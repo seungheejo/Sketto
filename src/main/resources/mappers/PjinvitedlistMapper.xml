@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jsp.board.service.PjinvitedlistMapper">
+
+	<insert id="inviteToPj" parameterType="invited">
+		INSERT INTO pjinvitedlist(
+		pjno
+		, id
+		) VALUES (
+		#{pjno}
+		, #{id}
+		)
+	</insert>
+
+	<select id="invitedList" parameterType="int" resultType="invited">
+		SELECT
+		id
+		FROM pjinvitedlist
+		WHERE pjno=#{pjno}
+	</select>
+
+	<select id="checkIfJoined" parameterType="int" resultType="invited">
+		SELECT
+		pjinvitedlist.id, member.id AS ox
+		FROM
+		pjinvitedlist, member
+		WHERE
+		pjinvitedlist.id=member.id(+) and pjinvitedlist.pjno=#{pjno}
+	</select>
+
+	<delete id="deleteFromInvited" parameterType="invited">
+		DELETE FROM
+		pjinvitedlist
+		WHERE
+		id = #{id}
+		AND
+		pjno = #{pjno}
+	</delete>
+
+	<select id="pjnolistById" parameterType="String" resultType="invited">
+		SELECT
+		pjno
+		, id
+		FROM pjinvitedlist
+		WHERE id=#{id}
+	</select>
+
+</mapper>

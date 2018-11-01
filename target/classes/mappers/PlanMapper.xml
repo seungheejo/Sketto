@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jsp.board.service.PlanMapper">
+
+	<insert id="insertPlan" parameterType="pl">
+		INSERT INTO plan(
+		pno
+		, planname
+		, pstartdate
+		, penddate
+		, pjno
+		, id
+		, priority
+		, progress
+		, color)
+		VALUES (
+		PNO_SEQ.NEXTVAL,
+		#{planname},
+		TO_DATE(#{pstartdate}, 'YYYY/MM/DD, HH24:mi'),
+		TO_DATE(#{penddate}, 'YYYY/MM/DD, HH24:mi'),
+		#{pjno},
+		#{id},
+		#{priority},
+		#{progress},
+		#{color}
+		)
+	</insert>
+
+	<select id="selectPlan" resultType="pl">
+		SELECT
+		pno
+		, planname
+		, pstartdate
+		, penddate
+		, pjno
+		, id
+		, priority
+		, progress
+		, color
+		FROM plan
+		WHERE pno=#{pno}
+	</select>
+
+	<select id="selectPlanList" resultType="pl">
+		SELECT
+		pno
+		, planname
+		, pstartdate
+		, penddate
+		, pjno
+		, id
+		, priority
+		, progress
+		, color
+		FROM plan
+		WHERE pjno=#{pjno}
+		ORDER BY pstartdate asc
+	</select>
+
+	<select id="selectPlanListById" parameterType="pl" resultType="pl">
+		SELECT
+		pno
+		, planname
+		, pstartdate
+		, penddate
+		, pjno
+		, id
+		, priority
+		, progress
+		, color
+		FROM plan
+		WHERE pjno=#{pjno} AND id LIKE '%'||#{id}||'%'
+		ORDER BY
+		pstartdate asc
+	</select>
+
+	<select id="selectPlanListByPriority" resultType="pl">
+		SELECT
+		pno
+		, planname
+		, pstartdate
+		, penddate
+		, pjno
+		, id
+		, priority
+		, progress
+		, color
+		FROM plan
+		WHERE pjno=#{pjno}
+		ORDER BY priority asc
+	</select>
+
+	<update id="updatePlan" parameterType="pl">
+		UPDATE plan
+		SET
+		planname=#{planname},
+		pstartdate=TO_DATE(#{pstartdate}, 'YYYY/MM/DD, HH24:mi'),
+		penddate=TO_DATE(#{penddate}, 'YYYY/MM/DD, HH24:mi'),
+		pjno=#{pjno},
+		id=#{id},
+		priority=#{priority},
+		progress=#{progress},
+		color=#{color}
+		WHERE pno=#{pno}
+	</update>
+
+	<delete id="deletePlan">
+		DELETE
+		FROM plan
+		WHERE pno=#{pno}
+	</delete>
+
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jsp.board.service.MemberMapper">
+
+	<insert id="joinMember" parameterType="mem">
+		INSERT INTO member(
+		id
+		, pw
+		, name
+		) VALUES (
+		#{id}
+		, #{pw}
+		, #{name})
+	</insert>
+
+	<select id="selectMember" resultType="mem">
+		SELECT
+		id
+		, pw
+		, name
+		FROM member
+		WHERE id =#{id}
+	</select>
+
+	<select id="checkId" resultType="String">
+		SELECT
+		id
+		FROM member
+		WHERE id = #{id}
+	</select>
+
+	<select id="MemberList" parameterType="string" resultType="mem">
+		SELECT
+		id
+		, name
+		FROM member
+		<if test="_parameter != null and _parameter != ''">
+			WHERE id LIKE '%'||#{searchText}||'%'
+		</if>
+		ORDER BY id
+	</select>
+
+	<select id="AllMember" resultType="mem">
+		SELECT id
+		FROM member
+	</select>
+
+	<update id="updateMember" parameterType="mem">
+		UPDATE member
+		SET
+		<if test="#{pw}!=null">
+			pw=#{pw}
+		</if>
+		<if test="#{name}!=null">
+			, name=#{name}
+		</if>
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteMember">
+		DELETE
+		FROM member
+		WHERE id = #{id} AND pw = #{pw}
+	</delete>
+
+	<select id="login" parameterType="mem" resultType="mem">
+		SELECT
+		id
+		, pw
+		, name
+		FROM member
+		WHERE id = #{id} AND pw = #{pw}
+	</select>
+
+
+</mapper>

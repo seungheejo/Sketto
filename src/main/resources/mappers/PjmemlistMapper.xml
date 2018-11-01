@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jsp.board.service.PjmemlistMapper">
+
+	<insert id="insertPjmem" parameterType="pmlist">
+		INSERT INTO pjmemlist(
+		pjno
+		, id
+		) VALUES (
+		#{pjno}
+		, #{id}
+		)
+	</insert>
+
+	<select id="pjmemlist" resultType="pmlist">
+		SELECT
+		member.name as name
+		, pjmemlist.id as id
+		FROM member, pjmemlist
+		WHERE member.id=pjmemlist.id
+		AND pjmemlist.pjno=#{pjno}
+		ORDER BY id asc
+	</select>
+
+	<delete id="deletePjmem" parameterType="pmlist">
+		DELETE
+		FROM pjmemlist
+		WHERE pjno=#{pjno} and id=#{id}
+	</delete>
+
+
+</mapper>

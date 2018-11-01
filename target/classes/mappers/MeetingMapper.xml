@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jsp.board.service.MeetingMapper">
+
+	<insert id="insertMeeting" parameterType="mt">
+		<selectKey keyProperty="meetingno" resultType="int" order="AFTER">
+			SELECT meetingno_seq.CURRVAL FROM DUAL
+		</selectKey>
+		INSERT INTO meeting(
+		meetingno
+		, id
+		, meetingtitle
+		, meetingdate
+		, pjno
+		) VALUES (
+		meetingno_seq.NEXTVAL
+		, #{id}
+		, #{meetingtitle}
+		, TO_DATE(#{meetingdate}, 'YYYY-MM-DD-hh24-mi-ss')
+		, #{pjno}
+		)
+	</insert>
+
+	<update id="updateMeetingtext" parameterType="mt">
+		UPDATE meeting
+		SET meetingtext = #{meetingtext}
+		WHERE
+		meetingno = #{meetingno}
+	</update>
+
+	<select id="selectOneMeeting" resultType="mt">
+		SELECT
+		meetingno
+		, id
+		, TO_CHAR(meetingdate, 'YYYY-MM-DD-hh24-mi-ss') meetingdate
+		, meetingtitle
+		, meetingtext
+		, pjno
+		FROM meeting
+		WHERE meetingno=#{meetingno}
+	</select>
+
+	<select id="selectMeetingTitle" resultType="mt">
+		SELECT
+		meetingno
+		, id
+		, TO_CHAR(meetingdate, 'YYYY-MM-DD-hh24-mi-ss') meetingdate
+		, meetingtitle
+		, pjno
+		FROM meeting
+		WHERE
+		pjno = #{pjno} AND meetingtitle=#{meetingtitle}
+	</select>
+
+	<select id="selectPjMeetings" parameterType="int" resultType="mt">
+		SELECT
+		meetingno
+		, id
+		, TO_CHAR(meetingdate, 'YYYY-MM-DD-hh24-mi-ss') meetingdate
+		, meetingtitle
+		, pjno
+		FROM meeting
+		WHERE pjno=#{pjno}
+		ORDER BY meetingno DESC
+	</select>
+
+
+	<delete id="deleteMeeting">
+		DELETE
+		FROM meeting
+		WHERE meetingno=#{meetingno}
+	</delete>
+
+
+</mapper>

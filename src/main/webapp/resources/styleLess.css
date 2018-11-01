@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.flipster--carousel {
+  /*    .flipster__item--past .flipster__item__content { 
+      transform: translateX(100%) rotateY(-20deg) scale(0.5);
+    }*/
+}
+.flipster--carousel .flipster__item--future-2 {
+  transform: translateX(-241%);
+}
+.flipster--carousel .flipster__item--future-2 .flipster__item__content {
+  transform: rotateY(45deg) scale(0.8);
+}
+.flipster--carousel .flipster__item--past-2 {
+  transform: translateX(241%);
+}
+.flipster--carousel .flipster__item--past-2 .flipster__item__content {
+  transform: rotateY(-45deg) scale(0.8);
+}

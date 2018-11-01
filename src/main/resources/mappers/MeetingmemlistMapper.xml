@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jsp.board.service.MeetingmemlistMapper">
+	<insert id="insertMml" parameterType="mml">
+		INSERT INTO meetingmemlist(
+		meetingno
+		, id
+		, name
+		) VALUES(
+		#{meetingno}
+		, #{id}
+		, #{name}
+		)
+	</insert>
+
+	<select id="selectOneMml" resultType="mml">
+		SELECT meetingno,
+		id,
+		name
+		FROM meetingmemlist
+		WHERE
+		meetingno = #{meetingno}
+		AND
+		id = #{id}
+	</select>
+
+	<select id="selectNames" resultType="String">
+		SELECT DISTINCT
+		name, id
+		FROM meetingmemlist
+		WHERE
+		meetingno = #{meetingno}
+	</select>
+
+	<delete id="deleteMml" parameterType="mml">
+		DELETE FROM meetingmemlist
+		WHERE
+		id = #{id}
+	</delete>
+</mapper>

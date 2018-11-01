@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.jsp.board.service.CheckBoxMapper">
+
+	<insert id="insertCheckBox" parameterType="cb">
+		INSERT INTO CHECKBOX (
+		cno
+		, pjno
+		, pno
+		, text
+		, checked)
+		VALUES (
+		cno_seq.nextval
+		, #{pjno}
+		, #{pno}
+		, #{text}
+		, #{checked})
+	</insert>
+
+	<select id="selectCheckBox" resultType="cb">
+		SELECT
+		cno
+		, pjno
+		, pno
+		,
+		text
+		, checked
+		FROM CHECKBOX
+		WHERE cno=#{cno}
+	</select>
+
+	<select id="selectCheckBoxList" resultType="cb">
+		SELECT
+		cno
+		, pjno
+		, pno
+		, text
+		, checked
+		FROM CHECKBOX
+		WHERE pno=#{pno}
+		ORDER BY cno
+	</select>
+
+	<update id="updateCheckBox" parameterType="cb">
+		UPDATE CHECKBOX
+		SET
+		text=#{text},
+		checked=#{checked}
+		WHERE cno=#{cno}
+	</update>
+
+	<delete id="deleteCheckBox">
+		DELETE
+		FROM CHECKBOX
+		WHERE cno=#{cno}
+	</delete>
+
+</mapper>

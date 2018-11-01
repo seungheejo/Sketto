@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="org.jsp.board.vo.Member" alias="mem" />
+		<typeAlias type="org.jsp.board.vo.Plan" alias="pl" />
+		<typeAlias type="org.jsp.board.vo.Project" alias="pj" />
+		<typeAlias type="org.jsp.board.vo.Chatlibrary" alias="ch" />
+		<typeAlias type="org.jsp.board.vo.Meeting" alias="mt" />
+		<typeAlias type="org.jsp.board.vo.Pjmemlist" alias="pmlist" />
+		<typeAlias type="org.jsp.board.vo.Pjinvitedlist" alias="invited" />
+		<typeAlias type="org.jsp.board.vo.CheckBox" alias="cb" />
+		<typeAlias type="org.jsp.board.vo.Meetingmemlist" alias="mml" />
+	</typeAliases>
+</configuration>
