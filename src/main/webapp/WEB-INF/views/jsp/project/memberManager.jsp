@@ -71,7 +71,7 @@ function searchmember() {
 	});
 }
 
-//skettoでない人たちを招待 
+//sketto에 없는 사람들을 초대 
 function sendinvitedmail(email){
 	var email = email;
 	var pjno = ${pjno };
@@ -94,7 +94,7 @@ function sendinvitedmail(email){
 	});
 }
 
-//skettoのアカウントがあるメンバーをプロジェクトに招待(insert)
+//sketto에 계정이 있는 멤버를 프로젝트에 초대(insert)
 function insertintopj(email){
 	var email = email;
 	var pjno = ${pjno };
@@ -176,9 +176,9 @@ hr {
 			<input type="text" class="form-control form-control-lg"
 				id="searchText" name="searchText" placeholder="sketto@sketto.com"
 				onkeyup="searchmember()">
-			<!-- 検索結果が出るdiv-->
+			<!-- 검색 결과가 나오는 div-->
 			<div id="idResult"></div>
-			<!-- 検索結果が出るdivエンド -->
+			<!-- 검색 결과가 나오는 div 끝 -->
 		</div>
 
 		<div class="inviteddiv">
