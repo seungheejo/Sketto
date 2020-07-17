@@ -22,7 +22,7 @@
 	crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- リーダーがプロジェクトを作って見えるページ -->
+<!-- 리더가 프로젝트를 만들고나서 볼 수 있는 페이지 -->
 <title>${pj.pjtitle}에팀원을 초대하세요! - Sketto!</title>
 <script src="resources/jquery-3.3.1.js"></script>
 
