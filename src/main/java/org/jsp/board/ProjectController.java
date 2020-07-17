@@ -36,7 +36,7 @@ public class ProjectController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
-	// プロジェクトの始まる日を今日に設定
+	// 프로젝트 시작일을 오늘로 설정
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/goproject", method = RequestMethod.GET)
 	public String goproject(Model m, HttpSession ss) {
@@ -70,11 +70,11 @@ public class ProjectController {
 
 	@RequestMapping(value = "project", method = RequestMethod.GET)
 	public String projectdetail(int pjno, Model m, HttpSession ss) {
-		// セッションにあるプロジェクトのpjnoを削除
+		// 세션에 있는 프로젝트의 pjno를 삭제
 		ss.removeAttribute("pjno");
 		ss.removeAttribute("mt");
 
-		// プロジェクトのメンバーが違い場合はメインページに移動
+		// 프로젝트 멤버가 아닐 경우는 메인 페이지로 이동
 		String id = (String) ss.getAttribute("loginid");
 		Project thispj = pdao.selectAProject(pjno);
 		ArrayList<Pjmemlist> pjmemlist = pjmemlistdao.pjmemlist(pjno);
@@ -92,7 +92,7 @@ public class ProjectController {
 		return "redirect:./";
 	}
 
-	// プロジェクトを管理するためにプロジェクトの情報を伝える
+	// 프로젝트를 관리하기 위해 프로젝트 정보를 전달
 	@RequestMapping(value = "/gopjmanage", method = RequestMethod.GET)
 	public String gopjmanage(int pjno, Model m, HttpSession ss) {
 		String id = (String) ss.getAttribute("loginid");
@@ -112,7 +112,7 @@ public class ProjectController {
 
 	}
 
-	// プロジェクトを作る
+	// 프로젝트 생성
 	@RequestMapping(value = "/createpj", method = RequestMethod.POST)
 	public String createpj(Project pj, Model m, HttpSession ss) {
 		logger.info("{}", pj);
@@ -127,7 +127,7 @@ public class ProjectController {
 			e.printStackTrace();
 		}
 
-		// プロジェクトの招待画面に移動部分
+		// 프로젝트 초대화면으로 이동하는 부분
 		Project thispj;
 
 		ArrayList<Project> pjlist = pdao.selectPjlistLeader(pj.getId());
@@ -137,7 +137,7 @@ public class ProjectController {
 				thispj = pdao.selectAProject(pjlist.get(i).getPjno());
 				logger.debug("잘 불러 왔나 : ", thispj);
 
-				// リーダーもプロジェクトメンバーのリストに追加しなければならない
+				// 리더도 프로젝트 멤버 리스트에 추가해야만 함
 				Pjmemlist leader = new Pjmemlist(pj.getId(), pjlist.get(i).getPjno());
 				try {
 					result = pjmemlistdao.insertPjmem(leader);
@@ -158,7 +158,7 @@ public class ProjectController {
 		return "/jsp/project/projectInvite";
 	}
 
-	// プロジェクトをアップデート
+	// 프로젝트 업데이트
 	@RequestMapping(value = "/updatepj", method = RequestMethod.POST)
 	public String updatepj(Project pj, Model m, HttpSession ss) {
 		logger.info("{}", pj);
@@ -178,7 +178,7 @@ public class ProjectController {
 
 	}
 
-	// プロジェクトの内容を見る
+	// 프로젝트 내용을 봄
 	@RequestMapping(value = "project", method = RequestMethod.POST)
 	public String projectdetailPost(Model m, HttpSession ss) {
 		int pjno = (int) ss.getAttribute("pjno");
@@ -190,7 +190,7 @@ public class ProjectController {
 		return "/jsp/project/projectDetail";
 	}
 
-	// プロジェクトを削除
+	// 프로젝트 삭제
 	@RequestMapping(value = "/deletepj", method = RequestMethod.POST)
 	public String deletepj(HttpSession ss) {
 		int pjno = (int) ss.getAttribute("pjno");
