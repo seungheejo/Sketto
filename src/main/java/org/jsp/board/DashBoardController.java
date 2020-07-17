@@ -37,13 +37,13 @@ public class DashBoardController {
 
 		String id = (String) ss.getAttribute("loginid");
 
-		// セッションに保存されたidを確認のために
+		// 세션에 저장된 id를 확인하기 위해
 		logger.debug("세션에 저장된 아이디 : " + id);
 		Member mem = memdao.selectMember(id);
 
 		ArrayList<Project> list = null;
 
-		// idによって進行中のプロジェクト情報を持って来る
+		// id에 따라 진행중인 프로젝트 정보를 가져옴
 		list = pjdao.selectPjlistJoined(id);
 
 		m.addAttribute("member", mem);
