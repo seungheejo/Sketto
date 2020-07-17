@@ -57,7 +57,7 @@ div {
 
 var planId;
 
-	/* プロジェクト始まる日と締め切りを受けて始まる */
+	/* 프로젝트 시작일과 마감일을 받아서 시작 */
 
 	var startdate = moment('${pj.startdate}').format('YYYY-MM-DD-hh-mm-ss');
 	var enddate = moment('${pj.enddate}').format('YYYY-MM-DD-hh-mm-ss');
@@ -85,10 +85,10 @@ var planId;
 	var todayDateToString = moment(todayDate).format('YYYY-MM-DD-HH-mm-ss');
 
 	var todayDateXval = null; 
-	//スケジュールのローの数
+	//스케쥴의 열의 수
 	var scheduleVariety = 10;
 
-	//終了日と開始日の差を教えてくれる(終了日-開始日)
+	//종료일과 시작일의 차를 구함(종료일-시작일)
 	function calDateRange(startdate, enddate) {
 		var FORMAT = "-";
 
@@ -126,15 +126,15 @@ var planId;
 	function stringToDate(varDate) {
 		var FORMAT = "-";
 
-		// FORMATを含む長さをチェック
+		// FORMAT을 포함한 길이를 체크
 		if (varDate.length != 19)
 			return null;
 
-		// FORMATがあるかチェック
+		// FORMAT이 있는지 체크
 		if (varDate.indexOf(FORMAT) < 0)
 			return null;
 
-		// 年、月、日に区分
+		// 년, 월, 일 구분
 		var var_dt = varDate.split(FORMAT);
 
 		var_dt[1] = (Number(var_dt[1]) - 1) + "";
@@ -154,7 +154,7 @@ var planId;
 
 		document.getElementById('scheduleDiv').innerHTML += '<font size="0.2em">';
 		
-		/* これから日曜日を表示 */
+		/* 여기부터 일요일을 표시 */
 		for (var j = 0; j <= schedulePeriod; j++) {
 			
 			var newDiv = document.createElement('DIV'); 
@@ -199,11 +199,11 @@ var planId;
 			var vardateLastDateofThisMonth = new Date(varDate.getYear(),
 					varDate.getMonth() + 1, 0);
 
-			//1日に色を与える
-			//一週間に色を与える
+			//1일에 색을 부여함
+			//1주일에 색을 부여함
 			var varDateMMDD = moment(varDate).format('YYYYMMDD');
 
-			newDiv.setAttribute('id', 'dropon' + varDateMMDD); // xを設定
+			newDiv.setAttribute('id', 'dropon' + varDateMMDD); // x를 설정
 			newDiv.setAttribute('class', 'boxCalendarParent');
 
 			document.getElementById('scheduleDiv').appendChild(newDiv);
@@ -245,7 +245,7 @@ var planId;
 		pstartdate = pstartdate.replace(":", "-");
 
 		var pstartdateAsDate = stringToDate(pstartdate);
-		//dateタイプに変更
+		//date타입으로 변경
 
 		var penddate = '${planString.penddate}';
 		penddate = penddate.substring(0, 19);
@@ -269,13 +269,13 @@ var planId;
 					+ 'no' + i) != null) {
 				$('#draggable' + '${planString.pno}' + 'no' + i).remove();
 			}
-			//既存の日程は削除
+			//기존 일정을 삭제
 
 			var newDiv = document.createElement('DIV');
 			var xIns = xStartDate + i;
 
-			// xを設定
-			newDiv.setAttribute('i', i); // divの順番、iを設定
+			// x를 설정
+			newDiv.setAttribute('i', i); // div의 순서와 i를 설정 
 			newDiv.setAttribute('pno', '${planString.pno}');
 			newDiv.setAttribute('pstartdate', pstartdate);
 			newDiv.setAttribute('penddate', penddate);
@@ -329,7 +329,7 @@ var planId;
 		var popupX = (window.screen.width / 2) - (popupWidth / 2);
 		var popupY= (window.screen.height /2) - (popupHeight / 2);
 
-		//pnoを持ってコントローラに移動
+		//pno를 가지고 컨트롤러로 이동
 		window
 				.open("getThePlan?pno=" + pno, "일정내용",
 						'width='+popupWidth+'px, height='+popupHeight+'px, toolbar=no, menubar=no, scrollbars=no, resizable=yes left='
