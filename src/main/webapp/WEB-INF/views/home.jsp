@@ -252,7 +252,7 @@ footer {
 
 	<!-- 로그인 안했을 경우 -->
 	<c:if test="${loginid==null }">
-		<!-- バックグラウンドのビデオ -->
+		<!-- 백그라운드 비디오 -->
 		<video autoplay muted loop id="myVideo">
 			<source src="resources/video/meeting1.mp4" type="video/mp4">
 		</video>
