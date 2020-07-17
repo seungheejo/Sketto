@@ -26,7 +26,7 @@
 <script type="text/javascript" src="resources/member.js"></script>
 <script src="resources/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-	//有効するかをチェック
+	//유효성 체크
 	function formcheck() {
 
 		var id = document.getElementById('id');
@@ -133,12 +133,12 @@ input[type=password] {
 </head>
 
 <body>
-	<!-- バックグラウンドのビデオ -->
+	<!-- 백그라운드 비디오 -->
 	<video autoplay muted loop id="myVideo">
 		<source src="resources/video/skettotest1.mp4" type="video/mp4">
 	</video>
 
-	<!-- メンバー登録フォーム -->
+	<!-- 멤버 등록 폼 -->
 	<div class="content">
 		<div class="joindiv">
 			<img src="resources/img/logo2.png"
@@ -173,7 +173,7 @@ input[type=password] {
 			</form>
 		</div>
 	</div>
-	<!-- メンバー登録フォームエンド -->
+	<!-- 멤버 등록 폼 끝 -->
 
 </body>
 </html>
