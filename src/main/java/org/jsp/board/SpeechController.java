@@ -64,7 +64,7 @@ public class SpeechController {
 		return "/speech";
 	}
 
-	// 会議の作るおよび選択フォームに移動(リーダー限定)
+	// 회의생성 및 회의선택 폼으로 이동 (리더 한정)
 	@RequestMapping(value = "meetingForm", method = RequestMethod.GET)
 	public String meetingForm(Model model, HttpSession session) {
 		session.removeAttribute("plist");
@@ -81,7 +81,7 @@ public class SpeechController {
 		return "/meetingForm";
 	}
 
-	// 会議の作る(リーダー限定)
+	// 회의생성 (리더 한정)
 	@RequestMapping(value = "makemeeting", method = RequestMethod.POST)
 	public String makeMeeting(Meeting mt, HttpSession session, Model model) {
 		File originalFile, folder;
@@ -89,11 +89,11 @@ public class SpeechController {
 		session.removeAttribute("errormsg");
 
 		if (mtdao.selectMeetingTitle(mt) == null) {
-			mtdao.insertMeeting(mt); // <selectKey>タグを使用してmeetingnoを自動に持って来ることができる
+			mtdao.insertMeeting(mt); // <selectKey>태그를 이용해서 meetingno를 자동으로 가져오는것이 가능
 			mt = mtdao.selectOneMeeting(mt);
 			System.out.println("회의 생성: " + mt);
 
-			// 会議録ファイル作る及びデータベースに会議録ファイルの名前(経路を含む)保存
+			// 회의록 파일 생성 및 데이터베이스에 회의록 파일명(경로를 포함)을 저장
 			try {
 				folder = new File("C:\\SkettoMeeting");
 				if (!folder.exists()) {
@@ -126,7 +126,7 @@ public class SpeechController {
 		return "redirect:meetingForm";
 	}
 
-	// アラートとメールでのお知らせは30分、10分、1分前に発送
+	// 알람 메세지와 메일로의 알림은 30분, 10분, 1분전에 발신
 	@ResponseBody
 	@RequestMapping(value = "alarm30101", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	public String alarm30(HttpSession session) {
@@ -155,11 +155,11 @@ public class SpeechController {
 			long diffToMinute = diff / 60000;
 
 			if (diffToMinute == 30) {
-				// ウェブではアラートが表示される
+				// 웹에서는 알람 메세지가 표시됨
 				alarmMsg = m.getMeetingtitle() + " 회의가 약 30분 남았습니다.";
 				System.out.println(alarmMsg);
 
-				// メールにお知らせが届く
+				// 메일로 알림이 도착
 				for (Pjmemlist pjmem : pjmemlist) {
 					SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 					simpleMailMessage.setFrom("skettomanager@gmail.com");
@@ -206,7 +206,7 @@ public class SpeechController {
 		return alarmMsg;
 	}
 
-	// 選択した会議に移動(リーダー限定)
+	// 선택한 회의로 이동(리더 한정)
 	@RequestMapping(value = "speech", method = RequestMethod.GET)
 	public String startSpeech(Meeting mt, Model model, HttpSession session) {
 		mt = mtdao.selectOneMeeting(mt);
@@ -231,7 +231,7 @@ public class SpeechController {
 		return "speech";
 	}
 
-	// 音声をテキストに変換
+	// 음성을 텍스트로 변환
 	@ResponseBody
 	@RequestMapping(value = "voice", method = RequestMethod.GET)
 	public String voice(Meeting mt, String voice, Model model, HttpSession session) {
@@ -279,18 +279,18 @@ public class SpeechController {
 		return voice;
 	}
 
-	// ファイルのアップロード経路
+	// 파일 업로드 경로
 	final String uploadPath = "C:\\SkettoMeeting\\filesUploaded";
 	ArrayList<Chatlibrary> downloadsList = new ArrayList<>();
 
-	// ファイルをアップロード
+	// 파일 업로드
 	@ResponseBody
 	@RequestMapping(value = "/uploadFile")
 	public Chatlibrary uploadFile(Chatlibrary ch, MultipartFile upload, HttpSession session, Model model) {
 
 		/*
-		 * 添付ファイルがある場合は指定された経路に保存し 
-		 * 原本ファイル名と保存されたファイル名をchオブジェクトに設定
+		 * 첨부 파일이 있는 경우는 지정된 경로에 저장하고 
+		 * 원본 파일명과 저장된 파일명을 ch객체에 설정
 		 */
 		if (!upload.isEmpty()) {
 			String savedfile = FileService.saveFile(upload, uploadPath);
@@ -306,7 +306,7 @@ public class SpeechController {
 		return ch;
 	}
 
-	// ダウンロードボタンをクリックすると新しいウィンドウが開く
+	// 다운로드 버튼을 클릭하면 새로운 윈도우창이 열림
 	@RequestMapping(value = "download", method = RequestMethod.GET)
 	public String download(Model model, HttpSession session) {
 		Meeting mt = (Meeting) session.getAttribute("mt");
@@ -319,13 +319,13 @@ public class SpeechController {
 		return "/download";
 	}
 
-	// ファイルをダウンロード
+	// 파일 다운로드
 	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
 	public Chatlibrary downloadFile(Chatlibrary filenumOnly, int filenum, Model model, HttpServletResponse response) {
 		filenumOnly.setFilenum(filenum);
 		Chatlibrary ch = chdao.selectOneFile(filenumOnly);
 
-		// 元のファイル名を持って来る
+		// 원래의 파일명을 가져옴
 		String originalfile = new String(ch.getOriginalfile());
 		try {
 			response.setHeader("Content-Disposition",
@@ -334,7 +334,7 @@ public class SpeechController {
 			e.printStackTrace();
 		}
 
-		// 保存されたファイルの経路
+		// 저장된 파일의 경로
 		String fullpath = uploadPath + "\\" + ch.getSavedfile();
 
 		FileInputStream filein = null;
@@ -357,7 +357,7 @@ public class SpeechController {
 		return null;
 	}
 
-	// 会議録のダウンロード
+	// 회의록 다운로드
 	@RequestMapping(value = "/hitherto", method = RequestMethod.GET)
 	public Meeting downloadHitherto(Meeting mt, Model model, HttpSession session, HttpServletResponse response) {
 		mt = (Meeting) session.getAttribute("mt");
@@ -392,7 +392,7 @@ public class SpeechController {
 		return null;
 	}
 
-	// 会議のテキストを保存
+	// 회의 텍스트를 저장
 	@RequestMapping(value = "saveMeetingText", method = RequestMethod.GET)
 	public String saveMeetingText(Meeting mt, HttpSession session) {
 		Meeting mtt = (Meeting) session.getAttribute("mt");
