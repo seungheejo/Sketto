@@ -41,7 +41,7 @@ public class PjinviteController {
 	@RequestMapping(value = "/invitetopj", method = RequestMethod.POST)
 	public String invitedtopj(int pjno, Model m, HttpSession ss) {
 
-		// このプロジェクトのリーダーだけアクセス可能
+		// 이 프로젝트의 리더만 접근가능
 		String id = (String) ss.getAttribute("loginid");
 		Project thispj = pdao.selectAProject(pjno);
 		logger.debug("", thispj);
@@ -50,7 +50,7 @@ public class PjinviteController {
 			return "redirect:./";
 		}
 
-		// プロジェクトの招待画面に移動
+		// 프로젝트 초대화면으로 이동
 		m.addAttribute("pj", pdao);
 
 		return "/jsp/project/projectInvite";
@@ -83,7 +83,7 @@ public class PjinviteController {
 		System.out.println(invitedlist);
 
 		/*
-		 * プロジェクトメンバーとプロジェクトに招待されたメンバーのidが同じなら checklistにこのidを入れる
+		 * 프로젝트멤버와 프로젝트에 초대된 멤버의 id가 같을경우 checklist에 이 id를 넣음
 		 */
 		ArrayList<String> checklist = new ArrayList<>();
 
@@ -114,7 +114,7 @@ public class PjinviteController {
 		return "/jsp/project/memberManager";
 	}
 
-	// プロジェクトに招待いたメンバーを持って来る
+	// 프로젝트에 초대된 멤버를 가져옴
 	@RequestMapping(value = "/invitedlist", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<Pjinvitedlist> invitedlist(int pjno) {
@@ -128,7 +128,7 @@ public class PjinviteController {
 		return list;
 	}
 
-	// プロジェクトリーダーがメンバーを除名
+	// 프로젝트 리더가 멤버를 제명
 	@RequestMapping(value = "deletePjmem", method = RequestMethod.POST)
 	public String deletedmem(int pjno, String id, HttpSession ss, Model m) {
 
