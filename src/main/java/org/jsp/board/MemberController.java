@@ -37,7 +37,7 @@ public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
-	// メンバー登録ページに移動
+	// 멤버 등록 페이지로 이동
 	@RequestMapping("/joinform")
 	public String gojoinform(Model m) {
 
@@ -47,7 +47,7 @@ public class MemberController {
 		return "/jsp/member/JoinForm";
 	}
 
-	// idがもう存在するか確認
+	// id가 이미 존재하는지 확인
 	@ResponseBody
 	@RequestMapping(value = "idcheck", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	public String idcheck(String id) {
@@ -66,7 +66,7 @@ public class MemberController {
 		return msg;
 	}
 
-	// ログインフォームに移動
+	// 로그인 폼으로 이동
 	@RequestMapping(value = "/skettologin")
 	public String gologinForm(HttpSession session) {
 
@@ -75,7 +75,7 @@ public class MemberController {
 		return "/jsp/member/skettoLogin";
 	}
 
-	// ログアウト
+	// 로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 
@@ -88,7 +88,7 @@ public class MemberController {
 		return "redirect:./";
 	}
 
-	// メンバー登録
+	// 멤버 등록
 	@RequestMapping(value = "/joinmember", method = RequestMethod.POST)
 	public String joincustomer(Member mem, Model model) {
 
@@ -109,7 +109,7 @@ public class MemberController {
 
 		System.out.println("초대되었던 프로젝트: " + hadinvited);
 
-		// 招待されたプロジェクトがある場合
+		// 초대되었던 프로젝트가 있을 경우
 		if (hadinvited != null) {
 			for (Pjinvitedlist invitedpjno : hadinvited) {
 
@@ -126,7 +126,7 @@ public class MemberController {
 		return "redirect:./";
 	}
 
-	// ログイン
+	// 로그인
 	@RequestMapping(value = "logintoSketto", method = RequestMethod.POST)
 	public String logintoSketto(String id, String password, Model m, HttpSession session) {
 
@@ -160,7 +160,7 @@ public class MemberController {
 		logger.debug("pjmemlist" + pjmemlist);
 
 		// memlist - pjmemlist
-		// 全てのメンバーの中でプロジェクトに参加中のメンバー以外のメンバー
+		// 모든 멤버중에 프로젝트에 비참가중인 멤버 (모든 멤버 - 프로젝트 참가중인 멤버)
 		for (int i = 0; i < memlist.size(); i++) {
 			for (int j = 0; j < pjmemlist.size(); j++) {
 				if (memlist.get(i).getId().equals(pjmemlist.get(j).getId())) {
