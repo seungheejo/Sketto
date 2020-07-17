@@ -6,15 +6,15 @@ import org.jsp.board.vo.Meetingmemlist;
 
 public interface MeetingmemlistMapper {
 
-	// 会議に参加
+	// 회의에 참가
 	public int insertMml(Meetingmemlist mml);
 
-	// 会議に参加するユーザを探す
+	// 회의에 참가할 유저를 찾음
 	public Meetingmemlist selectOneMml(Meetingmemlist mml);
 
-	// 参加者のリストに名前を入れる
+	// 참가자 리스트에 이름을 넣음
 	public ArrayList<String> selectNames(int meetingno);
 
-	// 会議から出たユーザを会議参加者のリストから削除
+	// 회의에서 나온 유저를 회의참가 리스트에서 삭제
 	public int deleteMml(Meetingmemlist mml);
 }
