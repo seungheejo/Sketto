@@ -42,7 +42,7 @@ public class MailController {
 	@RequestMapping(value = "/sendmail", method = RequestMethod.GET)
 	public String SendMail() throws Exception {
 
-		// テストのためのメール
+		// 테스트를 위한 메일
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		simpleMailMessage.setFrom("skettomanager@gmail.com");
 		simpleMailMessage.setTo("thggbtmb@gmail.com");
@@ -54,11 +54,11 @@ public class MailController {
 		return "redirect:gosendmail";
 	}
 
-	// プロジェクトの招待メール送信
+	// 프로젝트 초대메일 발신
 	@ResponseBody
 	@RequestMapping(value = "/sendinvitedmail", method = RequestMethod.POST, produces = "application/json")
 	public Boolean SendMailTest(int pjno, String id) throws Exception {
-		// 一般テキストメール
+		// 일반 텍스트 메일
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		simpleMailMessage.setFrom("skettomanager@gmail.com");
 		simpleMailMessage.setTo(id);
@@ -74,7 +74,7 @@ public class MailController {
 
 		boolean okToInvite = true;
 
-		// 招待が成功しなかった場合
+		// 초대가 실패했을 경우
 		for (Pjinvitedlist toinvite : pjivtlist) {
 			if (toinvite.getId().equals(id)) {
 				okToInvite = false;
@@ -82,7 +82,7 @@ public class MailController {
 			}
 		}
 
-		// 招待が成功した場合リストに保存
+		// 초대가 성공했을 경우 리스트에 저장
 		if (okToInvite) {
 			ivtdao.inviteToPj(ivtlist);
 			System.out.println("invitedlist에 새로 저장");
@@ -99,14 +99,14 @@ public class MailController {
 
 		boolean okToInsert = true;
 
-		// もうプロジェクトのメンバーである場合
+		// 이미 프로젝트 멤버일 경우
 		for (Pjmemlist pjm : pjmemnow) {
 			if (pjm.getId().equals(id)) {
 				okToInsert = false;
 			}
 		}
 
-		// プロジェクトのメンバーでない場合プロジェクトに招待
+		// 프로젝트 멤버가 아닐 경우 프로젝트로 초대
 		if (okToInsert) {
 
 			Pjmemlist pjmem = new Pjmemlist(id, pjno);
