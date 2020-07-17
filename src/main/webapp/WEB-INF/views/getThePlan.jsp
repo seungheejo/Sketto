@@ -341,7 +341,7 @@ select {
 
 	}
 
-	//動的にチェックボックスを作る
+	//동적으로 체크박스를 생성
 	var idx = 0;
 	function add() {
 
@@ -514,7 +514,7 @@ select {
 			</p>
 			<div id="dynamicUL" align="left" style="width: 90%">
 
-				<!-- データベースにcheckboxテキストがあれば持って来る -->
+				<!-- 데이터베이스에 체크박스 텍스트가 있으면 가져옴 -->
 				<c:forEach items="${checkboxList }" var="i" varStatus="status">
 
 					<script type="text/javascript">
