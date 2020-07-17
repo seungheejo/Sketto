@@ -46,7 +46,7 @@ public class ScheduleController {
 	@Inject
 	CheckBoxDAO checkboxDAO;
 
-	// プランを作る
+	// 플랜 생성
 	@ResponseBody
 	@RequestMapping(value = "/insertJ", method = RequestMethod.GET)
 	public List<Plan> reloadJ(Locale locale, Model model, String jsonString) {
@@ -55,9 +55,9 @@ public class ScheduleController {
 		System.out.println(jsonString);
 		System.out.println("======================");
 
-		// schedule.jspからプランの情報をajaxで送って受ける
+		// schedule.jsp로부터 플랜 정보를 ajax로 받음
 		// 'jsonString' : JSON.stringify(planInsJSON)
-		// jsonStringを受けて構文解析(parsing)
+		// jsonString을 받아서 파싱함
 		JsonParser parser = new JsonParser();
 		Object obj = parser.parse(jsonString);
 		JsonObject jsonObj = (JsonObject) obj;
@@ -80,7 +80,7 @@ public class ScheduleController {
 		Date parsed = null;
 		String theDateString = null;
 
-		// デートをsqlフォーマットに適用するために変換
+		// date를 sql포맷에 적용하기 위해 변환
 		try {
 			parsed = format.parse(pStartDate);
 			theDateString = sqlformat.format(parsed);
@@ -116,7 +116,7 @@ public class ScheduleController {
 		return planList;
 	}
 
-	// プランの情報にアクセス
+	// 플랜 정보에 엑세스
 	@RequestMapping(value = "/goplan", method = RequestMethod.GET)
 	public String goJ(Locale locale, Model model, HttpSession session, int pjno) {
 
@@ -124,7 +124,7 @@ public class ScheduleController {
 		ArrayList<Pjmemlist> pjmList = new ArrayList<>();
 		ArrayList<Member> memberList = new ArrayList<>();
 
-		// pjnoでプランの情報をデータベースから持って来る
+		// pjno로 플랜 정보를 데이터베이스에서 가져옴
 		pjmList = pjmDAO.pjmemlist(pjno);
 
 		for (Pjmemlist pjmember : pjmList) {
@@ -143,7 +143,7 @@ public class ScheduleController {
 		return "schedule";
 	}
 
-	// プランをカレンダーで見る
+	// 플랜을 캘린더에서 봄
 	@RequestMapping(value = "/goplanCalendar", method = RequestMethod.GET)
 	public String goplanCalendar(Locale locale, Model model, int pjno) {
 
@@ -159,7 +159,7 @@ public class ScheduleController {
 		return "schedule_calendar";
 	}
 
-	// プランをガントチャートで見る
+	// 플랜을 간트차트로 봄
 	@RequestMapping(value = "/goplanGant", method = RequestMethod.GET)
 	public String goplanGant(Locale locale, Model model, int pjno) {
 
@@ -184,7 +184,7 @@ public class ScheduleController {
 		return "schedule_gant";
 	}
 
-	// idによってプランをガントチャートで見る
+	// id에 따라 플랜을 간트차트로 봄
 	@RequestMapping(value = "/goplanGantById", method = RequestMethod.GET)
 	public String goplanGantById(Locale locale, Model model, int pjno, String loginname) {
 
@@ -211,7 +211,7 @@ public class ScheduleController {
 		return "schedule_gant";
 	}
 
-	// 優先度を適用するガントチャート
+	// 우선도를 적용하는 간트차트
 	@RequestMapping(value = "/goplanGantByPriority", method = RequestMethod.GET)
 	public String goplanGantByPriority(Locale locale, Model model, int pjno) {
 
@@ -237,7 +237,7 @@ public class ScheduleController {
 		return "schedule_gant";
 	}
 
-	// 今日のスケジュールを時間別に確認
+	// 오늘의 스케쥴을 시간별로 확인
 	@RequestMapping(value = "/myScheduleToday", method = RequestMethod.GET)
 	public String schedule_myScheduleToday(Locale locale, Model model, int pjno) {
 
@@ -254,8 +254,8 @@ public class ScheduleController {
 	}
 
 	/*
-	 * スケジュール棒グラフをクリックすると
-	 * そのスケジュールの内容をデータベースから持ってきてウィンドウで見る
+	 * 스케쥴 막대 그래프를 클릭하면
+	 * 그 스케쥴의 내용을 데이터베이스에서 가져와서 윈도우창에서 봄
 	 */
 	@RequestMapping(value = "/getThePlan", method = RequestMethod.GET)
 	public String getThePlan(Model model, String pno) {
@@ -265,8 +265,8 @@ public class ScheduleController {
 		ArrayList<CheckBox> checkboxList = new ArrayList<>();
 
 		/*
-		 * データベースからcheckboxの情報を持ってきて引用符マーク(”)を削除し 
-		 * nullを空白(" ")に見せるためにcheckboxListTextを作る
+		 * 데이터베이스에서 checkbox 정보를 가져와서 큰따옴표(”)를 제거하고 
+		 * null을 공백(" ")으로 보여주기위해 checkboxListText를 생성
 		 */
 		ArrayList<String> checkboxListText = new ArrayList<>();
 		ArrayList<Pjmemlist> pjmList = new ArrayList<>();
@@ -319,7 +319,7 @@ public class ScheduleController {
 
 	}
 
-	// プランをアップデート
+	// 플랜 업데이트
 	@ResponseBody
 	@RequestMapping(value = "/updatePlan", method = RequestMethod.GET)
 	public String updatePlan(Locale locale, Model model, String jsonString) {
@@ -367,15 +367,15 @@ public class ScheduleController {
 		System.out.println("sql에 맞춰 변환 된 값 : " + pEndDate);
 
 		/*
-		 * integerなのでajaxのJSONで送って受けた時 
-		 * データのそばにある引用符マーク(”)を削除のために
+		 * integer형 이기 때문에 ajax의 JSON으로 받을 때 
+		 * 데이터 옆에 있는 큰따옴표를(”) 삭제하기 위함
 		 */
 		int pjno = Integer.parseInt(String.valueOf(jsonObj.get("pjno")).replaceAll("\"", ""));
 		int priority = Integer.parseInt(String.valueOf(jsonObj.get("priority")).replace("\"", ""));
 		double progress = Double.parseDouble(String.valueOf(jsonObj.get("progress")).replaceAll("\"", ""));
 		String color = String.valueOf(jsonObj.get("color"));
 
-		// 新しいアップデートされたリストを持って来る
+		// 새롭게 업데이트된 리스트를 가져옴
 		Plan newPlanIns = new Plan(pno, planname, pStartDate, pEndDate, pjno, id, priority, progress, color);
 
 		System.out.println(newPlanIns);
@@ -384,7 +384,7 @@ public class ScheduleController {
 		return "goplan";
 	}
 
-	// プランを削除
+	// 플랜 삭제
 	@ResponseBody
 	@RequestMapping(value = "/deletePlan", method = RequestMethod.GET)
 	public String deletePlan(Locale locale, Model model, String pno) {
@@ -395,7 +395,7 @@ public class ScheduleController {
 	}
 
 	/*
-	 * チェックボックスの情報を持って来て データベースに入れる
+	 * 체크박스 정보를 가져와서 데이터베이스에 넣음
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/insertCheckBox", method = RequestMethod.GET)
