@@ -57,7 +57,7 @@ h1 {
 </head>
 
 <body style="margin: 0">
-	<!-- メニュー -->
+	<!-- 메뉴 -->
 	<div id="topnav">
 		<div class="topnav">
 			<div class="topnavdiv">
@@ -67,16 +67,16 @@ h1 {
 			</div>
 		</div>
 	</div>
-	<!-- メニューエンド -->
+	<!-- 메뉴 끝 -->
 
-	<!-- エラーページの内容 -->
+	<!-- 에러 페이지 내용 -->
 	<h1 style="text-align: center;">에러입니다.</h1>
 	<div class="errorimg">
 		<img src="./resources/img/error1.png" style="width: 100%;">
 	</div>
 	<h2 style="text-align: center;">잠시후 다시 시도해주세요</h2>
 	<h2 style="text-align: center;">계속해서 같은 오류 발생시 문의 부탁드립니다.</h2>
-	<!-- エラーページの内容エンド -->
+	<!-- 에러 페이지 내용 끝 -->
 
 </body>
 </html>
