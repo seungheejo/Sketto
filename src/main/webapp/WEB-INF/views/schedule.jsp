@@ -368,7 +368,7 @@ div {
 						<span class='bb-accordion-title'
 							style="width: 100%; height: 100%; align: center; margin: 10px; padding: 10px; font-size: medium;">일정추가</span>
 						<div class='bb-accordion-content'>
-							<!-- 日程を入れる -->
+							<!-- 일정을 넣음 -->
 							<div
 								style="position: relative; padding: 0px; margin: 0px; text-align: left; font-size: medium;">
 								<form action='javascript: addPlanGraph()' id="addPlanForm">
@@ -489,7 +489,7 @@ div {
 											class="jscolor" id="colorIns"
 											style="font-size: medium; width: 48%;" />
 									</p>
-									<!-- 優先度 -->
+									<!-- 우선도 -->
 									<div>
 										<input type="text" class="menu"
 											style="border: none; background-color: #1f2944; color: #fff; font-size: medium; width: 48%;"
@@ -519,7 +519,7 @@ div {
 				align="top" onload="resizeIframe(this)" /></iframe>
 
 		</div>
-		<!-- メニュー、日程追加含む -->
+		<!-- 메뉴、일정추가 포함 -->
 
 
 		<script type="text/javascript">
