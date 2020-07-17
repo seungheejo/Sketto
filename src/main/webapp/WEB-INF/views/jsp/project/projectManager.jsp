@@ -230,7 +230,7 @@ input[type=text] {
 							</tr>
 						</thead>
 						<tbody>
-							<!-- リーダーの場合 -->
+							<!-- 리더일 경우 -->
 							<c:forEach items="${pjmemlist}" var="pjm">
 								<c:if test="${pjm.id==loginid }">
 									<tr>
@@ -241,7 +241,7 @@ input[type=text] {
 									</tr>
 								</c:if>
 							</c:forEach>
-							<!-- リーダーじゃない場合 -->
+							<!-- 리더가 아닐 경우 -->
 							<c:forEach items="${pjmemlist}" var="pjm">
 								<c:if test="${pjm.id!=loginid }">
 									<tr>
