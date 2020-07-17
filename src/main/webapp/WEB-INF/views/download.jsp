@@ -108,7 +108,7 @@ h1 {
 	<h1 id="headline" style="margin-left: auto; margin-right: auto;">
 		DOWNLOADS</h1>
 
-	<!-- 添付ファイルがある場合はファイルをダウンロードできるリンクを提供する -->
+	<!-- 첨부파일이 있는 경우는 파일을 다운로드할 수 있는 링크를 제공함 -->
 	<c:if test="${dlist != null}">
 		<div id="downloads">
 			<table>
