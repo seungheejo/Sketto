@@ -45,7 +45,7 @@ public class HomeController {
 
 		String formattedDate = dateFormat.format(date);
 
-		// IDとパスワードがnullがない場合にログイン
+		// ID, 비밀번호가 null이 아닌경우에 로그인
 		if (skettoLoginId != null && skettoLoginPW != null) {
 
 			Member mem = new Member(skettoLoginId, skettoLoginPW, null);
@@ -61,16 +61,16 @@ public class HomeController {
 
 		String id = (String) session.getAttribute("loginid");
 
-		// セッションでidがある場合
+		// 세션에 id가 있는경우
 		if (id != null) {
-			// セッションに保存されたidを確認のために
+			// 세션에 저장된 id를 확인하기 위해
 			logger.debug("세션에 저장된 아이디 : " + id);
 
 			Member mem = memdao.selectMember(id);
 
 			ArrayList<Project> list = null;
 
-			// idによって進行中のプロジェクト情報を持って来る
+			// id에 따라 진행중인 프로젝트 정보를 가져옴
 			list = pjdao.selectPjlistJoined(id);
 
 			model.addAttribute("member", mem);
@@ -82,7 +82,7 @@ public class HomeController {
 		return "home";
 	}
 
-	// エラーページに移動
+	// 에러 페이지로 이동
 	@RequestMapping("error")
 	public String error() {
 
