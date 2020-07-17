@@ -1,6 +1,6 @@
 package org.jsp.board.vo;
 
-public class Chatlibrary { // 会議中のファイルを管理
+public class Chatlibrary { // 회의중의 파일을 관리
 
 	private int filenum;
 	private String id;
