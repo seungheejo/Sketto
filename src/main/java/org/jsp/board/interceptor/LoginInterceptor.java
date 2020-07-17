@@ -9,12 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
- * ユーザーのログイン確認インターセプタ
+ * 유저 로그인 확인 인터셉터
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
-	//コントローラのメソッドが実行する前に処理
+	//컨트롤러 메소드가 실행되기 전의 처리
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -24,7 +24,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String loginid = (String) session.getAttribute("loginid");
 		
-		//ログインされない場合はログインページに移動
+		//로그인 되어있지 않을 경우엔 로그인 페이지로 이동
 		if (loginid == null) {
 			response.sendRedirect(request.getContextPath() + "/skettologin");
 			return false;
