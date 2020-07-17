@@ -413,7 +413,7 @@ function submitMeeting(){
 	meetingForm1.submit();
 }
 
-//会議アラームのチェックのために
+//회의 알람을 체크하기 위해
 $(document).ready(function(){
 	setInterval(function(){
 		$.ajax({
