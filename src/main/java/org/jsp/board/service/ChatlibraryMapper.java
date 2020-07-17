@@ -6,13 +6,13 @@ import org.jsp.board.vo.Chatlibrary;
 
 public interface ChatlibraryMapper {
 
-	// ファイル登録
+	// 파일 등록
 	public int insertFile(Chatlibrary ch);
 
-	// 一つのファイルだけ持って来る
+	// 하나의 파일만 가져옴
 	public Chatlibrary selectOneFile(Chatlibrary ch);
 
-	// 会議に属するファイルを全部持ってくる
+	// 회의에 속한 파일을 전부 가져옴
 	public ArrayList<Chatlibrary> selectAllFiles(Chatlibrary ch);
 
 }
