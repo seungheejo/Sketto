@@ -238,7 +238,7 @@ footer {
 </head>
 
 <body>
-	<!-- ログインする場合-->
+	<!-- 로그인 했을 경우-->
 	<c:if test="${loginid!=null }">
 		<div id="topnav">
 			<div class="topnav">
@@ -250,14 +250,14 @@ footer {
 		</div>
 	</c:if>
 
-	<!-- ログインしない場合 -->
+	<!-- 로그인 안했을 경우 -->
 	<c:if test="${loginid==null }">
 		<!-- バックグラウンドのビデオ -->
 		<video autoplay muted loop id="myVideo">
 			<source src="resources/video/meeting1.mp4" type="video/mp4">
 		</video>
 
-		<!-- ログインフォーム -->
+		<!-- 로그인 폼 -->
 		<div class="content">
 			<br>
 			<br>
@@ -296,9 +296,9 @@ footer {
 				</form>
 			</div>
 		</div>
-		<!-- ログインフォームエンド -->
+		<!-- 로그인 폼 끝 -->
 
-		<!-- 下のイメージ -->
+		<!-- 아래 이미지 -->
 		<div class="imghome">
 			<img src="resources/img/home2-1.png" class="home"><br> <img
 				src="resources/img/home2-2.png" class="home"><br> <img
@@ -306,10 +306,10 @@ footer {
 		</div>
 	</c:if>
 
-	<!-- ログインする場合-->
+	<!-- 로그인 했을 경우-->
 	<c:if test="${loginid!=null }">
 		<div class="imghome2">
-			<!-- 進行中のプロジェクトがない場合 -->
+			<!-- 진행중인 프로젝트가 없을 경우 -->
 			<div class="wholediv">
 				<c:if test="${list==null }">
 					<div class="pjitems1">
@@ -321,7 +321,7 @@ footer {
 					</div>
 				</c:if>
 
-				<!-- 進行中のプロジェクトがある場合 -->
+				<!-- 진행중인 프로젝트가 있을 경우 -->
 				<c:if test="${list!=null }">
 					<c:forEach var="pj" items="${list }">
 						<div class="card bg-light mb-3"
@@ -343,7 +343,7 @@ footer {
 						</div>
 					</c:forEach>
 					
-					<!-- 新しいプロジェクト作る -->
+					<!-- 새로운 프로젝트 생성 -->
 					<div class="card bg-light mb-3"
 						style="width: 30%; margin: 2%; float: left; margin-left: 1em; margin-right: 1em;">
 						<div class="card-header">
