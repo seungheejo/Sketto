@@ -153,11 +153,11 @@ div {
 
 	function drag(ev) {
 		
-		//dragTextにidを入れる
+		//dragText에 id를 넣음
 		ev.dataTransfer.setData("dragText", ev.target.id);
 		var divId = ev.dataTransfer.getData("dragText");
 		
-		//divIdを利用してxとyを持って来る
+		//divId를 이용해서 x와 y를 가져 옴
 		var originalX = document.getElementById(divId).getAttribute('x');
 		var originalY = document.getElementById(divId).getAttribute('y');
 
@@ -296,7 +296,7 @@ div {
 				document.getElementById(idForm + j).setAttribute('pstartdate',
 						startdateEdittedString);
 
-				//varDateで変更された差(varDate.getDate() - dateChange)を適用
+				//varDate에서 변경된 차이(varDate.getDate() - dateChange)를 적용
 				var enddateEdittedString = moment(enddateToDate).format(
 						'YYYY-MM-DD-hh-mm-ss');
 
