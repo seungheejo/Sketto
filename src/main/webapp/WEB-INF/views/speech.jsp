@@ -342,7 +342,7 @@ h1 {
 		<div id="all">
 			<p></p>
 			<div id="menu">
-				<!-- プロジェクトのリーダー -->
+				<!-- 프로젝트 리더 -->
 				<input type="text" class="menu"
 					style="border: none; background-color: #1f2944; color: #fff; margin-top: 2%;"
 					value=" * Project Leader" readonly="readonly"><br> <input
@@ -350,7 +350,7 @@ h1 {
 					style="border: none; background: transparent;" value="${mt.id }"
 					readonly="readonly"> <br>
 
-				<!-- プロジェクトのナンバー -->
+				<!-- 프로젝트 멤버 -->
 				<input type="text" class="menu"
 					style="border: none; background-color: #1f2944; color: #fff; margin-top: 2%;"
 					value=" * Project Number" readonly="readonly"><br> <input
@@ -358,7 +358,7 @@ h1 {
 					style="border: none; background: transparent;"
 					value="PJNo. ${mt.pjno }" readonly="readonly"> <br>
 
-				<!-- 会議のナンバー -->
+				<!-- 회의 멤버 -->
 				<input type="text" class="menu"
 					style="border: none; background-color: #1f2944; color: #fff; margin-top: 2%;"
 					value=" * Meeting Number" readonly="readonly"><br> <input
@@ -366,7 +366,7 @@ h1 {
 					style="border: none; background: transparent;"
 					value="No. ${mt.meetingno }" readonly="readonly"> <br>
 
-				<!-- 会議のタイトル -->
+				<!-- 회의 타이틀 -->
 				<input type="text" class="menu"
 					style="border: none; background-color: #1f2944; color: #fff; margin-top: 2%;"
 					value=" * Meeting Title" readonly="readonly"><br> <input
@@ -376,7 +376,7 @@ h1 {
 					placeholder="Please create meeting name." readonly="readonly">
 				<br>
 
-				<!-- チャッティングのid -->
+				<!-- 채팅 id -->
 				<input type="text" class="menu"
 					style="border: none; background-color: #1f2944; color: #fff; margin-top: 2%;"
 					value=" * User ID" readonly="readonly"><br> <input
@@ -387,14 +387,14 @@ h1 {
 			</div>
 			<div id="gaunde">
 
-				<!-- チャッティングの参加者 -->
+				<!-- 채팅 참가자 -->
 				<input type="text" id="userAll"
 					style="text-align: center; border: none; background-color: #1f2944; color: #fff; font-size: x-large; padding: 2%; width: 100%;"
 					placeholder="IDs of members" value=" Participants: ${plist }"
 					readonly="readonly">
 
 				<div id="chat">
-					<!-- 新しいチャッティングの部分 -->
+					<!-- 새로운 채팅 부분 -->
 					<textarea id="messageWindow" rows="10" cols="15"
 						style="text-align: left;" readonly="true"></textarea>
 					<br />
@@ -426,7 +426,7 @@ h1 {
 							speaking.</p>
 					</div>
 
-					<!-- 音声認識の結果を見れる部分 -->
+					<!-- 음성인식 결과를 볼 수 있는 부분 -->
 					<div id="results">
 						<span id="final_span" class="final"></span> <span
 							id="interim_span" class="interim"></span>
@@ -438,12 +438,12 @@ h1 {
 						style="font-size: x-large; border-color: #1f2944; float: left; width: 79.5%; height: 55px;"
 						name="inputMessage" placeholder="  I n p u t    M e s s a g e ." />
 
-					<!-- テキストを送信ボタン -->
+					<!-- 텍스트 송신 버튼 -->
 					<button id="send"
 						style="background-color: #1f2944; float: left; text-align: left; font-size: x-large; width: 13%; height: 55px; margin-right: 0.5%;"
 						onclick="send()">Send</button>
 
-					<!-- 音声認識を始まるボタン -->
+					<!-- 음성인식을 시작하는 버튼 -->
 					<div class="right">
 						<button id="start_button"
 							style="box-shadow: inset 0 -0.2352941176rem rgba(0, 0, 0, 0)"
@@ -452,7 +452,7 @@ h1 {
 								src="resources/img/mic.gif" alt="Start">
 						</button>
 					</div>
-					<!-- 言語の選択 select -->
+					<!-- 언어 선택 select -->
 					<div class="center">
 						<div id="div_language">
 							<select id="select_language" onchange="updateCountry()"></select>
@@ -510,7 +510,7 @@ h1 {
 	</div>
 
 
-	<!-- ウェブソケットサーバ -->
+	<!-- 웹 소켓 서버 -->
 	<script src="resources/jquery-3.3.1.js"></script>
 	<script
 		src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.1.min.js"></script>
